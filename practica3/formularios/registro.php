@@ -10,7 +10,7 @@
     
     function validarEspacio($valor,$i){
         if(preg_match("/^\s+$/",$valor)){
-            print "<p class\"msg__error\">$i no debe estar llenado con espacios<\p>";
+            print "<p class=\"msg__error\">$i no debe estar lleno de espacios.</p>";
             $GLOBALS["error"]=true;
         }
     }
