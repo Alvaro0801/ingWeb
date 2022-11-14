@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Formulario Contacto</title>
+</head>
+<body>
+    <form action="consultas.php" method="post" class="form">
+        <div class="form__title">
+            Formulario Contacto
+        </div>
+        <div class="form__group">
+            <label for="nombre">Nombre Completo</label>
+            <input type="text" name="nombre" id="nombre">
+            <span id="msg_nombre"></span>
+        </div>
+        <div class="form__group">
+            <label for="sexo" class="form__label">Género</label>
+            <select name="sexo" id="sexo">
+                <option value="hombre">Hombre</option>
+                <option value="mujer">Mujer</option>
+            </select>
+        </div>
+        <div class="form__group">
+            <label for="pais" class="form__label">País</label>
+            <select name="pais" id="pais">
+                <option value="Perú">Perú</option>
+                <option value="Chile">Chile</option>
+                <option value="Argentina">Argentina</option>
+                <option value="Colombia">Colombia</option>
+                <option value="Paraguay">Paraguay</option>
+            </select>
+        </div>
+        <div class="form__group">
+            <label for="tlf" class="form__label">Telefono</label>
+            <input type="text" name="tlf" id="tlf">
+            <span id="msg_tlf"></span>
+        </div>
+        <div class="form__group">
+            <label for="email" class="form__label">Email</label>
+            <input type="text" name="email" id="email">
+            <span id="msg_email"></span>
+        </div>
+
+        <button class="form__submit" id="enviarC">Enviar</button>
+    </form>
+
+    <script src="validaciones.js"></script>
+</body>
+</html>
