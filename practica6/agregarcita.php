@@ -11,22 +11,13 @@
     <div class="form">
         <?php 
             if($_POST){
-                $dbh = mysqli_connect('localhost', 'root', '123456'); // debe colocar su contraseña personalizada     
-        
-                if ($dbh->connect_error) {
-                    die("Incapaz de conectar a servidor MySQL: " . mysqli_error());
-                }
-                if (!mysqli_select_db($dbh,'agenda'))      
-                    die("Incapaz de seleccionar base de datos: " . mysqli_error());  
-                
+                include("./conexion.php");
                 $hora=$_POST["hora"];
                 $asunto=$_POST["asunto"];
                 $fecha=date("Y-m-d"); 
-                if($con=$dbh->prepare('INSERT INTO cita (horacita,diacita,asuntocita) VALUES (?,?,?)')){
-                    $con->bind_param("sss", $hora,$fecha,$asunto);
-                    $con->execute();
-                }  
-                mysqli_close($dbh);
+                $con=$db->prepare('INSERT INTO citas (horacita,diacita,asuntocita) VALUES (?,?,?)');
+                $con->execute([$hora,$fecha,$asunto]);
+                
                 echo '<p>Cita Agregada</p>';
             }
         ?>

@@ -35,7 +35,7 @@ form.addEventListener('click',(e)=>{
     if(enviar){
         const formC=document.querySelector('.form');
         console.log('Enviado')
-        fetch('http://localhost/ingweb/practica6/agregar.php',{
+        fetch('http://localhost/ingweb/practica6/agregarContacto.php',{
             method:'post',
             body: new FormData(formC)
         }).then(res=>res.json()).then(res=>{

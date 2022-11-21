@@ -14,16 +14,25 @@
 </head>
 <body>
     <h1>Nro Cita</h1>
-    <input type="text" name="id" id="id">
+    <form action="cambiarcita.php" method="get" id="form">
+        <input type="text" name="id" id="id_cita">
+    </form>
     <br><br>
     <button>
         <a href="agregarcita.php">Agregar Cita</a>
     </button>
     <br><br>
-    <button>
-        <a href="cambiarcita.php">Cambiar Cita</a>
+    <button id="cambiarCita">
+        Cambiar Cita
     </button>
 
-    
+    <script>
+        const btnCita=document.getElementById("cambiarCita");
+
+        btnCita.addEventListener("click",()=>{
+            form.submit();
+        })
+    </script>
+
 </body>
 </html>

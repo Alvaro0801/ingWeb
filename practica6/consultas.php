@@ -1,5 +1,5 @@
 <?php  
-    $dbh = mysqli_connect('localhost', 'root', '123456'); // debe colocar su contraseña personalizada     
+    $dbh = mysqli_connect('localhost', 'root', ''); // debe colocar su contraseña personalizada     
      
     if ($dbh->connect_error) {
         die("Incapaz de conectar a servidor MySQL: " . mysqli_error());
