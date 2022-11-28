@@ -1,0 +1,9 @@
+CREATE DATABASE contactos;
+
+CREATE TABLE contacto(
+	id int auto_increment,
+    nombre VARCHAR(100),
+    dni VARCHAR(10),
+    edad VARCHAR(2),
+    PRIMARY KEY(id)
+);

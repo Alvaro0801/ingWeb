@@ -1,0 +1,31 @@
+body{
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+.tablas{
+    display:inline-block;
+    padding: 10px;
+    width:500px;
+}
+table{
+    background-color: white;
+    width:100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+th,td{
+    padding: 10px;
+}
+
+thead{
+    background-color: #005176;
+    color: #fff
+
+}
+
+tr:nth-child(even){
+    background-color: #ddd;
+}
+#citas tr:hover{
+    background-color:#0271a5;
+    color: #fff
+}

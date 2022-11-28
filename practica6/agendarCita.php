@@ -1,5 +1,15 @@
 <?php
     include("./conexion.php");
+
+    if($_POST){
+        $idcita=$_POST["idcita"];
+        $idcontacto=$_POST["idcontacto"];
+        $con=$db->prepare('INSERT INTO citas_contacto (idcita,idcontacto) VALUES (?,?)');
+        $con->execute([$idcita,$idcontacto]);
+                
+        echo '<p>Cita Agendada</p>';
+    }
+
     function obtenerCitasOcupadas($db) {
         $sql = 'SELECT p.*,c.* FROM contacto p INNER JOIN citas_contacto cc ON p.id=cc.idcontacto INNER JOIN citas c ON cc.idcita=c.idcita';
         $consulta=$db->query($sql);
@@ -30,15 +40,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styleAgendar.css">
     <title>Document</title>
-    <style>
-        #citas tr:hover{
-            background-color:#81EBDF;
-        }
-    </style>
 </head>
 <body>
-    <div class="tablecitas">
+    <div class="tablas">
         <h2>Citas Programadas</h2>
         <table>
             <thead>
@@ -65,7 +71,7 @@
             </tbody>
         </table>
     </div>
-    <div class="tablecitas">
+    <div class="tablas">
         <h2>Citas Disponibles</h2>
         <table>
             <thead>
@@ -94,7 +100,7 @@
             <h2>Agendar Cita</h2>
         </div>
         <label for="idcontacto">Contacto</label>
-        <select name="id" id="idcontacto">
+        <select name="idcontacto" id="idcontacto">
             <option>Seleccione una opcion</option>
             <?php
                 foreach($contactos as $contacto) {
@@ -114,13 +120,13 @@
             const fila=e.target.parentNode;
             if(fila.classList=="fila_cita"){
                 const cita=document.querySelector('.cita');
-                let citaSave=`<input type="hidden" name="id" value="${fila.children[0].innerHTML}">
+                let citaSave=`<input type="hidden" name="idcita" value="${fila.children[0].innerHTML}">
                 <label for="">Fecha</label>
-                <input type="date" name="" id="fecha" value="${fila.children[1].innerHTML}">
+                <input type="date" name="" id="fecha" value="${fila.children[1].innerHTML}" disabled>
                 <label for="">Hora</label>
-                <input type="time" name="" id="hora" value="${fila.children[2].innerHTML}">
+                <input type="time" name="" id="hora" value="${fila.children[2].innerHTML}" disabled>
                 <label for="">Asunto</label>
-                <input type="text" name="" id="asunto" value="${fila.children[3].innerHTML}">`;
+                <input type="text" name="" id="asunto" value="${fila.children[3].innerHTML}" disabled>`;
                 cita.innerHTML=citaSave;
             }
 
