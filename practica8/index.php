@@ -4,6 +4,7 @@
 require("Autobus.php");
 require("Furgoneta.php");
 require("Coche.php");
+    $sen=false;
 if ($_POST) {
     $tipo = $_POST['tipo'];
     $auto = "";
@@ -21,16 +22,20 @@ if ($_POST) {
             $tipomsg = "Coche";
             break;
     }
+
     echo "<div> ¿Puedo aparcar el " . $tipomsg . " en la superficie?:
-        <strong><?php echo (" . $auto->puedeAparcar('superficie') . ") ? 'si' : 'no' ?></strong>
-    </div>
-    <div>
-    ¿Puedo aparcar el " . $tipomsg . " el subterráneo 1?:
-    <strong><?php echo (" . $auto->puedeAparcar('subterraneo1') . ") ? 'si' : 'no' ?></strong>
-</div>
-    <div>¿Puedo aparcar " . $tipomsg . " en el subterráneo 2?:
-    <strong><?php echo (" . $auto->puedeAparcar('subterraneo2') . ") ? 'si' : 'no' ?></strong>
-    </div>";
+        <strong>";
+    echo ($auto->puedeAparcar('superficie')) ? 'si' : 'no';
+    echo "</strong></div>";
+    echo "<div> ¿Puedo aparcar el " . $tipomsg . " en la subterraneo1?:
+    <strong>";
+    echo ($auto->puedeAparcar('subterraneo1')) ? 'si' : 'no';
+    echo "</strong></div>";
+    echo "<div> ¿Puedo aparcar el " . $tipomsg . " en la subterraneo2?:
+    <strong>";
+    echo ($auto->puedeAparcar('subterraneo2')) ? 'si' : 'no';
+    echo "</strong></div>";
+    $sen=true;
 } else {
 ?>
     <html lang="en">
@@ -59,4 +64,10 @@ if ($_POST) {
     </html>
 <?php
 }
+ if($sen){
 ?>
+<script>
+    setTimeout()
+</script>
+<?php } ?>
+
