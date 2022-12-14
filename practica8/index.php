@@ -35,8 +35,67 @@ if ($_POST) {
     <strong>";
     echo ($auto->puedeAparcar('subterraneo2')) ? 'si' : 'no';
     echo "</strong></div>";
-    $sen=true;
-} else {
+    echo "<button id=\"next\">Siguiente</button>";
+    echo "<script>
+        document.querySelector('#next').addEventListener('click',(e)=>{
+            window.location.href = 'formDatos.php?tipo=$tipomsg';
+        })
+    </script>";
+} else if($_GET){
+    $tipo = $_GET['tipo'];
+    $auto = "";
+    $marca =$_GET['color'];
+    $modelo =$_GET['modelo'];
+    $color =$_GET['color'];
+    $propietario =$_GET['prop'];
+    echo "<div> <h2>Vehiculo: $tipo</h2></div>";
+    switch ($tipo) {
+        case 'Autobus':
+            $auto = new Autobus();
+            $tipomsg = "Autobus";
+            $empresa=$_GET['emp'];
+            $auto->setEmpresa($empresa);
+            echo "<div>
+            ¿A qué empresa pertenece el autobús?:
+            <strong>";
+            echo $auto->getEmpresa()."</strong></div>";
+            break;
+        case 'Furgoneta':
+            $auto = new Furgoneta();
+            $tipomsg = "Furgoneta";
+            break;
+        case 'Coche':
+            $auto = new Coche();
+            $tipomsg = "Coche";
+            break;
+    } 
+    $auto->setMarca($marca);
+    $auto->setModelo($modelo);
+    $auto->setColor($color);
+    $auto->setPropietario($propietario);
+
+    echo "<div> <strong>Marca: </strong> ";
+    echo $auto->getMarca()."</div>";
+    echo "<div> <strong>Modelo: </strong>";
+    echo $auto->getModelo()."</div>";
+    echo "<div> <strong>Color: </strong> ";
+    echo $auto->getColor()."</div>";
+    echo "<div> <strong>Propietario: </strong> ";
+    echo $auto->getPropietario()."</div>";
+
+    echo "<div> ¿Puedo aparcar el " . $tipomsg . " en la superficie?:
+        <strong>";
+    echo ($auto->puedeAparcar('superficie')) ? 'si' : 'no';
+    echo "</strong></div>";
+    echo "<div> ¿Puedo aparcar el " . $tipomsg . " en la subterraneo1?:
+    <strong>";
+    echo ($auto->puedeAparcar('subterraneo1')) ? 'si' : 'no';
+    echo "</strong></div>";
+    echo "<div> ¿Puedo aparcar el " . $tipomsg . " en la subterraneo2?:
+    <strong>";
+    echo ($auto->puedeAparcar('subterraneo2')) ? 'si' : 'no';
+    echo "</strong></div>";
+}else {
 ?>
     <html lang="en">
 
@@ -64,10 +123,6 @@ if ($_POST) {
     </html>
 <?php
 }
- if($sen){
+ 
 ?>
-<script>
-    setTimeout()
-</script>
-<?php } ?>
 
